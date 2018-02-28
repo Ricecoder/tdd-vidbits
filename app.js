@@ -19,9 +19,6 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (_, res) => {
-  res.redirect('/videos');
-});
 
 app.use('/', videosRoute);
 // Catch 404 and forward to error handler
@@ -40,6 +37,11 @@ app.use((err, req, res, next) => {
   // Render the error page
   res.status(err.status || 500);
   res.render('error');
+
+});
+
+app.get('/', (_, res) => {
+  res.redirect('/videos');
 });
 
 module.exports = app;

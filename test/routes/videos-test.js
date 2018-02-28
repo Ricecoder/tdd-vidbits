@@ -68,7 +68,7 @@ describe('Server path: /videos', () => {
         beforeEach(connectDatabaseAndDropData);
 
         afterEach(disconnectDatabase);
-        
+
         it('renders videos', async () => {
             const video = await seedVideoToDatabase();
 
@@ -76,7 +76,8 @@ describe('Server path: /videos', () => {
                 .get('/videos');
 
             console.log(response.text);
-            assert.include(parseTextFromHTML(response.text, '.video-title'), video.title);
+            const pageText = parseTextFromHTML(response.text, 'body');
+            assert.include(pageText, video.title);
         });
     });
 
