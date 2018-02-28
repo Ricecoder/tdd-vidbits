@@ -13,6 +13,10 @@ describe('Server path: /videos', () => {
     
 
     describe('POST: create video', () => {
+        beforeEach(connectDatabaseAndDropData);
+
+        afterEach(disconnectDatabase);
+
         it('should return a 201', async () => {
             const title = 'Puppies';
             const description = 'Cute puppies!';
@@ -61,6 +65,10 @@ describe('Server path: /videos', () => {
     });
 
     describe('GET: videos', () => {
+        beforeEach(connectDatabaseAndDropData);
+
+        afterEach(disconnectDatabase);
+        
         it('renders videos', async () => {
             const video = await seedVideoToDatabase();
 
